@@ -13,6 +13,6 @@ public class carreraEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int Codigo;
+    private int codigoCarrera;
     private String nombreCarrera;
 }

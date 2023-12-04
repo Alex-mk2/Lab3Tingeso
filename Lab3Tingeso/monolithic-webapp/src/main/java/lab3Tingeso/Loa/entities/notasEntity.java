@@ -15,9 +15,9 @@ public class notasEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int cod_alumno;
-    private int cod_asig;
-    private int sem;
+    private int codigoAlumno;
+    private int codigoAsignatura;
+    private int semestre;
     private float nota;
     private String anio;
 }

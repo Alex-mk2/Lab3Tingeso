@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface planRepository extends JpaRepository<planEntity, Long>{
 
+    planEntity findByCodigoPlan(int codigoPlan);
+
+    planEntity findByCodigoAsignatura(int codigoAsignatura);
 }

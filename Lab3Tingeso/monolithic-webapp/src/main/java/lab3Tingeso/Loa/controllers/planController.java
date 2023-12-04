@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/plan")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class planController {
 
     @Autowired

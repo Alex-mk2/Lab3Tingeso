@@ -3,7 +3,7 @@ import lab3Tingeso.Loa.entities.estudiantesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.Optional;
+
 
 @Service
 public class estudiantesService {
@@ -11,25 +11,18 @@ public class estudiantesService {
     @Autowired
     lab3Tingeso.Loa.repositories.estudiantesRepository estudiantesRepository;
     
-    public ArrayList<estudiantesEntity> obtenerUsuarios(){
+    public ArrayList<estudiantesEntity> obtenerEstudiantes(){
         return (ArrayList<estudiantesEntity>) estudiantesRepository.findAll();
     }
 
-    public estudiantesEntity guardarUsuario(estudiantesEntity usuario){
+    public estudiantesEntity guardarEstudiante(estudiantesEntity usuario){
         return estudiantesRepository.save(usuario);
     }
 
-    public Optional<estudiantesEntity> obtenerPorId(Long id){
-        return estudiantesRepository.findById(id);
+    public estudiantesEntity findEstudentByCarrer(Long codigoCarrera){
+        return estudiantesRepository.findEstudentByCodigoCarrera(codigoCarrera);
     }
-
-    public boolean eliminarUsuario(Long id) {
-        try{
-            estudiantesRepository.deleteById(id);
-            return true;
-        }catch(Exception err){
-            return false;
-        }
+    public estudiantesEntity deleteEstudentByCarrer(Long codigoCarrera){
+        return estudiantesRepository.deleteByCodigoCarrera(codigoCarrera);
     }
-  
 }

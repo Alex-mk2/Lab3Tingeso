@@ -13,7 +13,7 @@ public class estudiantesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int cod_carr;
+    private Long codigoCarrera;
     private String Rut;
     private String Nombres;
     private String Apellidos;
