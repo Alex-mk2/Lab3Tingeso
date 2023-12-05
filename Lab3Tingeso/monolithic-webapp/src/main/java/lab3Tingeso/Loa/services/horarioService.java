@@ -21,7 +21,11 @@ public class horarioService {
         return (ArrayList<horarioEntity>) horarioRepository.findAll();
     }
 
-    public horarioEntity crearHorario(horarioEntity horario){
+    public horarioEntity crearHorario(horarioEntity horario) {
+        String diaSemana = horario.getDiaSemana().toLowerCase();
+        if ("sábado".equals(diaSemana) || "domingo".equals(diaSemana)) {
+            throw new IllegalArgumentException("Los horarios no están permitidos los sábados ni domingos");
+        }
         return horarioRepository.save(horario);
     }
 

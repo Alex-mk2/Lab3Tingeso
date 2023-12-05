@@ -26,4 +26,7 @@ public class planService {
     public planEntity buscarCodigoAsignatura(int codigoAsignatura){
         return planRepository.findByCodigoAsignatura(codigoAsignatura);
     }
+    public ArrayList<planEntity> buscarCodigosAsignaturas(int codigoAsignatura){
+        return planRepository.findListByCodigoAsignatura(codigoAsignatura);
+    }
 }

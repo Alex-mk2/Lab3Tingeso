@@ -29,4 +29,22 @@ public class planController {
         }
         return ResponseEntity.ok(PlanList);
     }
+
+    @GetMapping("/byPlan/{codigoPlan}")
+    public ResponseEntity<planEntity> getPlanById(@PathVariable("codigoPlan") int codigoPlan){
+        planEntity plan = planService.buscarPlanPorId(codigoPlan);
+        if(plan == null){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(plan);
+    }
+
+    @GetMapping("/byAsignatura/{codigoAsignatura}")
+    public ResponseEntity<planEntity> getPlanByCodigoAsignatura(@PathVariable("codigoAsignatura") int codigoAsignatura){
+        planEntity plan = planService.buscarCodigoAsignatura(codigoAsignatura);
+        if(plan == null){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(plan);
+    }
 }

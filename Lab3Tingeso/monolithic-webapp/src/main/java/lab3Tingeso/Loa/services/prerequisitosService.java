@@ -24,4 +24,5 @@ public class prerequisitosService {
     public prerequisitosEntity createPrerequisito(prerequisitosEntity prerequisitos){
         return prerequisitosRepository.save(prerequisitos);
     }
+
 }
