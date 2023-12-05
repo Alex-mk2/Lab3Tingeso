@@ -6,11 +6,11 @@ import { Typography, TextField, Button, Container, Box } from '@mui/material';
 
 const AgregarHorario = () => {
   const [nuevoHorario, setNuevoHorario] = useState({
-    bloque: null,
-    codigoAsignatura: null,
+    bloque: '',
+    codigoAsignatura: '',
     diaSemana: '',
-    horaInicio: null,
-    horaTermino: null,
+    horaInicio: '',
+    horaTermino: '',
   });
 
   const handleInputChange = (e) => {
@@ -20,17 +20,26 @@ const AgregarHorario = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Validar que el día seleccionado no sea sábado ni domingo
+    const diaSeleccionado = nuevoHorario.diaSemana.toLowerCase(); // Convertir a minúsculas
+    console.log("Día seleccionado:", diaSeleccionado); // Agrega esta línea para imprimir el valor
+  
+    if (diaSeleccionado === 'sábado' || diaSeleccionado === 'domingo') {
+      Swal.fire("Error", "Los horarios no están permitidos los sábados ni domingos", "error");
+      return;
+    }
+  
     try {
       await Axios.post("http://localhost:8090/horarios", nuevoHorario);
       setNuevoHorario({
-        bloque: null,
-        codigoAsignatura: null,
+        bloque: '',
+        codigoAsignatura: '',
         diaSemana: '',
-        horaInicio: null,
-        horaTermino: null,
+        horaInicio: '',
+        horaTermino: '',
       });
-
+  
       Swal.fire("Éxito", "Horario agregado con éxito", "success");
     } catch (error) {
       console.error("Error al agregar el horario:", error);
