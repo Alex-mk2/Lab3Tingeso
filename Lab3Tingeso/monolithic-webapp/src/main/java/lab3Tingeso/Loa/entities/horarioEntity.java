@@ -1,10 +1,7 @@
 package lab3Tingeso.Loa.entities;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Data
@@ -22,4 +19,5 @@ public class horarioEntity{
     private String diaSemana;
     private int horaInicio;
     private int horaTermino;
+    private String nombreAsignatura;
 }

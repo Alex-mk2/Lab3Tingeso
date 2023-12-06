@@ -1,4 +1,5 @@
 package lab3Tingeso.Loa.services;
+import lab3Tingeso.Loa.entities.horarioEntity;
 import lab3Tingeso.Loa.entities.planEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,5 @@ public class planService {
     public planEntity buscarCodigoAsignatura(int codigoAsignatura){
         return planRepository.findByCodigoAsignatura(codigoAsignatura);
     }
-    public ArrayList<planEntity> buscarCodigosAsignaturas(int codigoAsignatura){
-        return planRepository.findListByCodigoAsignatura(codigoAsignatura);
-    }
+
 }

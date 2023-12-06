@@ -5,6 +5,7 @@ import lab3Tingeso.Loa.entities.horarioEntity;
 import lab3Tingeso.Loa.repositories.horarioRepository;
 import lab3Tingeso.Loa.entities.planEntity;
 import java.util.ArrayList;
+
 import lab3Tingeso.Loa.repositories.planRepository;
 
 @Service
@@ -21,9 +22,9 @@ public class horarioService {
         return (ArrayList<horarioEntity>) horarioRepository.findAll();
     }
 
-    public horarioEntity crearHorario(horarioEntity horario) {
-        String diaSemana = horario.getDiaSemana().toLowerCase();
-        if ("sábado".equals(diaSemana) || "domingo".equals(diaSemana)) {
+    public horarioEntity crearHorario(horarioEntity horario){
+        horarioEntity horario1 = horarioRepository.findDiaByDiaSemana(horario.getDiaSemana());
+        if ("sabado".equals(horario1) || "domingo".equals(horario1)) {
             throw new IllegalArgumentException("Los horarios no están permitidos los sábados ni domingos");
         }
         return horarioRepository.save(horario);
@@ -37,19 +38,8 @@ public class horarioService {
         return horarioRepository.findByIdHorario(idHorario);
     }
 
-    public ArrayList<horarioEntity> buscarTodosLoshorariosPorCodigoAsignatura(int codigoAsignatura){
-        return horarioRepository.findAllHorariosByCodigoAsignatura(codigoAsignatura);
+    public horarioEntity buscarPorDia(String diaSemana){
+        return horarioRepository.findDiaByDiaSemana(diaSemana);
     }
 
-    public horarioEntity buscarPorCodigoAsignatura(int codigoAsignatura){
-        return horarioRepository.findByCodigoAsignatura(codigoAsignatura);
-    }
-    public ArrayList<horarioEntity> buscarCodigoPorPlan(int codigoAsignatura){
-        planEntity plan = planRepository.findByCodigoAsignatura(codigoAsignatura);
-        if(plan == null){
-            return new ArrayList<>();
-        }else{
-            return horarioRepository.findAllHorariosByCodigoAsignatura(plan.getCodigoAsignatura());
-        }
-    }
 }

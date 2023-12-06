@@ -58,21 +58,4 @@ public class horarioController{
         return ResponseEntity.ok(horario);
     }
 
-    @GetMapping("/ByCodigoAsignatura/{codigoAsignatura}")
-    public ResponseEntity<horarioEntity> getHorarioByCodigoAsignatura(@PathVariable("codigoAsignatura") int codigoAsignatura){
-        horarioEntity horario = horarioService.buscarPorCodigoAsignatura(codigoAsignatura);
-        if(horario == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(horario);
-    }
-
-    @GetMapping("/plan/{codigoAsignatura}")
-    public ResponseEntity<ArrayList<horarioEntity>> buscarTodosPorCodigoPlan(@PathVariable("codigoAsignatura") int codigoAsignatura){
-        ArrayList<horarioEntity> listaHorarios = horarioService.buscarCodigoPorPlan(codigoAsignatura);
-        if(listaHorarios == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(listaHorarios);
-    }
 }

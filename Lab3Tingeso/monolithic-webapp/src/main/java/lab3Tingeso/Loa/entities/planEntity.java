@@ -1,10 +1,9 @@
 package lab3Tingeso.Loa.entities;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+
 
 @Entity
 @AllArgsConstructor
@@ -20,4 +19,5 @@ public class planEntity {
     private int nivel;
     private int codigoAsignatura;
     private String nombreAsignatura;
+
 }
