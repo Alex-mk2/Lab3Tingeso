@@ -57,6 +57,12 @@ const Inicio = () => {
             linkTo="/ingresoHorarios"
             buttonText="Registrar"
           />
+          <CardContainer
+            title="Mostrar horarios"
+            description="Muestra tus horarios aqui"
+            linkTo="/mostrarHorarios"
+            buttonText="Mostrar"
+          />
         </div>
       </div>
     </>

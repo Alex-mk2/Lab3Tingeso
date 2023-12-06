@@ -11,6 +11,7 @@ const AgregarHorario = () => {
     diaSemana: '',
     horaInicio: '',
     horaTermino: '',
+    nombreAsignatura: '',
   });
 
   const handleInputChange = (e) => {
@@ -25,7 +26,7 @@ const AgregarHorario = () => {
     const diaSeleccionado = nuevoHorario.diaSemana.toLowerCase(); // Convertir a minúsculas
     console.log("Día seleccionado:", diaSeleccionado); // Agrega esta línea para imprimir el valor
   
-    if (diaSeleccionado === 'sábado' || diaSeleccionado === 'domingo') {
+    if (diaSeleccionado === 'sabado' || diaSeleccionado === 'domingo') {
       Swal.fire("Error", "Los horarios no están permitidos los sábados ni domingos", "error");
       return;
     }
@@ -38,6 +39,7 @@ const AgregarHorario = () => {
         diaSemana: '',
         horaInicio: '',
         horaTermino: '',
+        nombreAsignatura: '',
       });
   
       Swal.fire("Éxito", "Horario agregado con éxito", "success");
@@ -88,6 +90,13 @@ const AgregarHorario = () => {
             label="Hora termino"
             name="horaTermino"
             value={nuevoHorario.horaTermino}
+            onChange={handleInputChange}
+            required
+          />
+          <TextField
+            label="nombre asignatura"
+            name="nombreAsignatura"
+            value={nuevoHorario.nombreAsignatura}
             onChange={handleInputChange}
             required
           />
