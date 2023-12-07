@@ -1,13 +1,11 @@
 package lab3Tingeso.Loa.controllers;
 import lab3Tingeso.Loa.entities.horarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lab3Tingeso.Loa.services.horarioService;
-
 import java.util.ArrayList;
-import java.util.Map;
+
 
 
 @RestController
@@ -30,11 +28,6 @@ public class horarioController{
 
     @PostMapping()
     public ResponseEntity<?> crearHorario(@RequestBody horarioEntity horario) {
-        String diaSemana = horario.getDiaSemana().toLowerCase();
-        if("sábado".equals(diaSemana) || "domingo".equals(diaSemana)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("error", "Los horarios no están permitidos los sábados ni domingos"));
-        }
         horarioEntity newHorario = horarioService.crearHorario(horario);
         return ResponseEntity.ok(newHorario);
     }

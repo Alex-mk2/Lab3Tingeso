@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lab3Tingeso.Loa.entities.horarioEntity;
 import lab3Tingeso.Loa.repositories.horarioRepository;
-import lab3Tingeso.Loa.entities.planEntity;
 import java.util.ArrayList;
 
 import lab3Tingeso.Loa.repositories.planRepository;
@@ -23,10 +22,6 @@ public class horarioService {
     }
 
     public horarioEntity crearHorario(horarioEntity horario){
-        horarioEntity horario1 = horarioRepository.findDiaByDiaSemana(horario.getDiaSemana());
-        if ("sabado".equals(horario1) || "domingo".equals(horario1)) {
-            throw new IllegalArgumentException("Los horarios no están permitidos los sábados ni domingos");
-        }
         return horarioRepository.save(horario);
     }
 
