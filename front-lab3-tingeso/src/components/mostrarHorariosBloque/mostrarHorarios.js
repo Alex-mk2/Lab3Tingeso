@@ -29,6 +29,8 @@ const MostrarHorariosBloque = () => {
         return "#749BC2"; 
       case 4:
         return "#4682A9";
+      case 5:
+        return "#29ADB2";
       default:
         return "#333"; 
     }
@@ -36,7 +38,7 @@ const MostrarHorariosBloque = () => {
 
   const ordenarPorDia = (eventos) => {
     return eventos.sort((a, b) => {
-      const diasOrden = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
+      const diasOrden = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
       const ordenDiasA = diasOrden.indexOf(a.diaSemana.toLowerCase());
       const ordenDiasB = diasOrden.indexOf(b.diaSemana.toLowerCase());
       if (ordenDiasA !== ordenDiasB) {
@@ -46,7 +48,33 @@ const MostrarHorariosBloque = () => {
     });
   };
 
-  const eventosOrdenados = ordenarPorDia(eventosMostrar);
+  const limitarBloques = (eventos, maxBloques) => {
+    const bloquesPorDia = {};
+    
+    eventos.forEach((evento) => {
+      if (!bloquesPorDia[evento.diaSemana]) {
+        bloquesPorDia[evento.diaSemana] = [];
+      }
+
+      if (bloquesPorDia[evento.diaSemana].length < maxBloques) {
+        bloquesPorDia[evento.diaSemana].push(evento);
+      }
+    });
+
+    const eventosLimitados = Object.values(bloquesPorDia).flat();
+
+    return ordenarPorDia(eventosLimitados);
+  };
+
+  const eventosLimitados = limitarBloques(eventosMostrar, 5); 
+ 
+  const eventosPorDia = eventosLimitados.reduce((acc, evento) => {
+    if (!acc[evento.diaSemana]) {
+      acc[evento.diaSemana] = [];
+    }
+    acc[evento.diaSemana].push(evento);
+    return acc;
+  }, {});
 
   return (
     <Container>
@@ -55,38 +83,43 @@ const MostrarHorariosBloque = () => {
         <Typography variant="h5" gutterBottom>
           Mostrar Horarios por Bloque
         </Typography>
-        {eventosOrdenados.length > 0 ? (
-          <div>
-            {eventosOrdenados.map((evento) => (
-              <Card
-                key={evento.id}
-                style={{ 
-                  marginBottom: "10px", 
-                  backgroundColor: asignarColor(evento.bloque), 
-                  width: "200px",
-                  height: "160px",
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6">
-                    Asignatura: {evento.nombreAsignatura}
-                  </Typography>
-                  <Typography>
-                    Bloque: {evento.bloque}, Día: {evento.diaSemana}
-                  </Typography>
-                  <Typography>
-                    Hora Inicio: {evento.horaInicio}, Hora Término: {evento.horaTermino}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))}
+        {Object.entries(eventosPorDia).map(([dia, eventosDia]) => (
+          <div key={dia}>
+            <Typography variant="h6" gutterBottom>
+              {`${dia.charAt(0).toUpperCase()}${dia.slice(1)}`}
+            </Typography>
+            <div style={{ display: "flex" }}>
+              {eventosDia.map((evento, index) => (
+                <Card
+                  key={evento.id}
+                  style={{ 
+                    backgroundColor: asignarColor(evento.bloque), 
+                    width: "200px",
+                    height: "180px",
+                    marginLeft: index > 0 ? "8px" : "0",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6">
+                      Asignatura: {evento.nombreAsignatura}
+                    </Typography>
+                    <Typography>
+                      Bloque: {evento.bloque}, Día: {evento.diaSemana}
+                    </Typography>
+                    <Typography>
+                      Hora Inicio: {evento.horaInicio}, Hora Término: {evento.horaTermino}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        ) : (
-          <p>No hay horarios para mostrar.</p>
-        )}
+        ))}
+        {eventosLimitados.length === 0 && <p>No hay horarios para mostrar.</p>}
       </Box>
     </Container>
   );
 };
 
 export default MostrarHorariosBloque;
+
