@@ -14,7 +14,18 @@ const NavBar = () => {
             Inicio
           </Link>
         </li>
-        {/* Agrega más elementos de navegación según sea necesario */}
+        <li style={styles.navigationItem}>
+          <Link to="/ingresoHorarios" style={styles.link}>Ingreso horarios</Link>
+        </li>
+        <li style={styles.navigationItem}>
+          <Link to="/mostrarHorarios" style={styles.link}>Mostrar horario</Link>
+        </li>
+        <li style={styles.navigationItem}>
+          <Link to="/perfilEstudiante" style={styles.link}>Perfil estudiante</Link>
+        </li>
+        <li style={styles.navigationItem}>
+          <Link to="/ingresoEstudiante" style={styles.link}>Ingreso estudiante</Link>
+        </li>
       </ul>
     </nav>
   );

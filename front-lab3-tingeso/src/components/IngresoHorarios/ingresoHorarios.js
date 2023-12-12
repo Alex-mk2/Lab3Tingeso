@@ -25,8 +25,22 @@ const AgregarHorario = () => {
     // Validar que el día seleccionado no sea sábado ni domingo
     const diaSeleccionado = nuevoHorario.diaSemana.toLowerCase(); // Convertir a minúsculas
     console.log("Día seleccionado:", diaSeleccionado); // Agrega esta línea para imprimir el valor
+
+
+    // Validar la diferencia de horarios
+    const minutosInicio = parseInt(nuevoHorario.horaInicio.substr(0, 2)) * 60 + parseInt(nuevoHorario.horaInicio.substr(2, 2));
+    const minutosTermino = parseInt(nuevoHorario.horaTermino.substr(0, 2)) * 60 + parseInt(nuevoHorario.horaTermino.substr(2, 2));
+    const diferenciaHorarios = minutosTermino - minutosInicio;
+
+    if(diferenciaHorarios < 0 || diferenciaHorarios > 180) {
+      Swal.fire("Error", "La diferencia de horarios debe ser entre 0 y 180 minutos", "error");
+      return;
+    }else if(diferenciaHorarios <= 2){
+      Swal.fire("Error", "No es posible que el horario sea ese, es muy corto", "error");
+      return;
+    }
   
-    if (diaSeleccionado === 'sabado' || diaSeleccionado === 'domingo') {
+    if(diaSeleccionado === 'sabado' || diaSeleccionado === 'domingo') {
       Swal.fire("Error", "Los horarios no están permitidos los sábados ni domingos", "error");
       return;
     }
