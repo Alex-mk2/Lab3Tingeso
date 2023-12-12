@@ -24,5 +24,7 @@ public class prerequisitosService {
     public prerequisitosEntity createPrerequisito(prerequisitosEntity prerequisitos){
         return prerequisitosRepository.save(prerequisitos);
     }
-
+    public ArrayList<prerequisitosEntity> buscarListaPorCodigoAsignatura(int codigoAsignatura){
+        return prerequisitosRepository.findListByCodigoAsignatura(codigoAsignatura);
+    }
 }

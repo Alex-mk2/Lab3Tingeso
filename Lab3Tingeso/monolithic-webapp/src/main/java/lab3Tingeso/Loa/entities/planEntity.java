@@ -19,5 +19,6 @@ public class planEntity {
     private int nivel;
     private int codigoAsignatura;
     private String nombreAsignatura;
+    Integer cupos = 50; //Capacidad maxima de cupos
 
 }

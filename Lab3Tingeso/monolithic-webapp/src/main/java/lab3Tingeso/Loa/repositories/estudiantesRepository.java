@@ -6,9 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface estudiantesRepository extends JpaRepository<estudiantesEntity, Long> {
 
+    estudiantesEntity findEstudentByCodigoCarrera(int codigoCarrera);
 
-    estudiantesEntity findEstudentByCodigoCarrera(Long codigoCarrera);
+    estudiantesEntity deleteByCodigoCarrera(int codigoCarrera);
 
-
-    estudiantesEntity deleteByCodigoCarrera(Long codigoCarrera);
 }

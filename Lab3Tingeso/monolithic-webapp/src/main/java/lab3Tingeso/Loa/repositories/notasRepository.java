@@ -8,4 +8,9 @@ import org.springframework.stereotype.Repository;
 public interface notasRepository extends JpaRepository<notasEntity, Long>{
 
     notasEntity findByCodigoAlumno(int codigoAlumno);
+
+    notasEntity findByCodigoAsignatura(int codigoAsignatura);
+
+
+    notasEntity findByNota(int nota);
 }

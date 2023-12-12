@@ -13,9 +13,9 @@ public class estudiantesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long codigoCarrera;
-    private String Rut;
-    private String Nombres;
-    private String Apellidos;
-    private String Email;
+    private int codigoCarrera;
+    private String rut;
+    private String nombres;
+    private String apellidos;
+    private String email;
 }

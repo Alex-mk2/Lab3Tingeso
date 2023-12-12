@@ -30,11 +30,12 @@ public class estudiantesController {
     }
 
     @GetMapping("/ByCarrera/{codigoCarrera}")
-    public ResponseEntity<estudiantesEntity> getByCodigoCarrera(@PathVariable("codigoCarrera") Long codigoCarrera){
+    public ResponseEntity<estudiantesEntity> getByCodigoCarrera(@PathVariable("codigoCarrera") int codigoCarrera){
         estudiantesEntity estudiante = estudiantesService.findEstudentByCarrer(codigoCarrera);
         if(estudiante == null){
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(estudiante);
     }
+
 }

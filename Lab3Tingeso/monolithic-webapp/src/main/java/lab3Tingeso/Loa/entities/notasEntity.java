@@ -18,6 +18,6 @@ public class notasEntity {
     private int codigoAlumno;
     private int codigoAsignatura;
     private int semestre;
-    private float nota;
+    private int nota;
     private String anio;
 }

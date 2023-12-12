@@ -19,10 +19,11 @@ public class estudiantesService {
         return estudiantesRepository.save(usuario);
     }
 
-    public estudiantesEntity findEstudentByCarrer(Long codigoCarrera){
+    public estudiantesEntity findEstudentByCarrer(int codigoCarrera){
         return estudiantesRepository.findEstudentByCodigoCarrera(codigoCarrera);
     }
-    public estudiantesEntity deleteEstudentByCarrer(Long codigoCarrera){
+    public estudiantesEntity deleteEstudentByCarrer(int codigoCarrera){
         return estudiantesRepository.deleteByCodigoCarrera(codigoCarrera);
     }
+
 }
